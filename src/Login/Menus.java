@@ -77,19 +77,20 @@ public class Menus {
     }
 
     
-    
-    
    
     //MENU BARBERO//
     public void menuBarbero() {
-        id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver la lista de clientes registrados \n 2 para editar tus datos  \n 3 para salir"));
+        id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver Agendas \n 2 para editar los datos de las agendas  \n 3 para salir"));
 
         switch (id) {
             case 1:
+                
+                System.out.println("ver agendas");
+                /*
                Cliente cliente = new Cliente();
                 valida.leer(cliente,"listaClientes.txt");
                 break;
-
+*/
             case 2:
                 System.out.println("llamar al metodo editar tus datos datos");
                 break;
@@ -109,8 +110,20 @@ public class Menus {
  id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver la lista de usuarios \n 2 para ver hotarios de barberos  \n 3 para eliminar una cita \n 4 modificar sus datos \n 5 para salir"));
         switch (id) {
             case 1:
-               
+                System.out.println("agendar citas");
                 break;
+                
+                
+            case 2:
+                System.out.println("ver horarios de citas disponibles");
+             break;
+              case 3:
+                System.out.println("eliminar una cita");
+             break;
+              case 4:
+                System.out.println("salir o regresar algun menu");
+             break;
+             
             default:
                 throw new AssertionError();
         }
