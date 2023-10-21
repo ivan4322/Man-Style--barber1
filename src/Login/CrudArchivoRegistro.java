@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package barberia;
+package Login;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -72,12 +72,15 @@ public void leerPersona(Persona persona, String nombre){
        }
         abrir.close();
         in.close();
+        
+        
      
         for(Persona guardador: listaPersonas){
              JOptionPane.showMessageDialog(null, "nombre " +guardador.getNombre()+ "\n apellido " + guardador.getApellido() 
                      + "\n identificacion " +guardador.getId() + " \n telefono " +guardador.getTelefono());
       }
             }
+            
        
         } catch (Exception e) {
         }  

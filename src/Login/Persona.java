@@ -1,5 +1,5 @@
 
-package barberia;
+package Login;
 
 import java.io.Serializable;
 

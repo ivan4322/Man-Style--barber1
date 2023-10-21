@@ -1,7 +1,7 @@
 
 
 
-package barberia;
+package Login;
 
 import javax.swing.JOptionPane;
 
@@ -31,9 +31,10 @@ public class Menus {
         switch (id) {
             case 1:
                this.valida = new CrudPersonasValidaciones();
+               
                 JOptionPane.showMessageDialog(null, "Validar registro");
                 id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el documento"));
-
+              
                 resultadoValidar = valida.validarPersona(id, "listaBarberos.txt");
                 if (resultadoValidar == true) {
                     JOptionPane.showMessageDialog(null, "BIENVENIDO \n ya estas registrado como barbero\n");
@@ -42,7 +43,8 @@ public class Menus {
                     JOptionPane.showMessageDialog(null, "Debes registrarte");
                     Barbero barbero = new Barbero();
                     valida.registroInicial(barbero);
-
+                  
+                 
                 }
                 break;
 
@@ -76,13 +78,16 @@ public class Menus {
 
     
     
+    
+   
     //MENU BARBERO//
     public void menuBarbero() {
-        id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver sus agendas \n 2 para editar tus datos  \n 3 para salir"));
+        id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver la lista de clientes registrados \n 2 para editar tus datos  \n 3 para salir"));
 
         switch (id) {
             case 1:
-                System.out.println("llamar al metodo ver sus agendas");
+               Cliente cliente = new Cliente();
+                valida.leer(cliente,"listaClientes.txt");
                 break;
 
             case 2:
@@ -104,8 +109,7 @@ public class Menus {
  id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la opcion que desea \n 1 para ver la lista de usuarios \n 2 para ver hotarios de barberos  \n 3 para eliminar una cita \n 4 modificar sus datos \n 5 para salir"));
         switch (id) {
             case 1:
-                Cliente cliente = new Cliente();
-                valida.leer(cliente,"listaClientes.txt");
+               
                 break;
             default:
                 throw new AssertionError();

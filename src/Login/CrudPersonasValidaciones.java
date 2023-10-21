@@ -1,4 +1,4 @@
-package barberia;
+package Login;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,24 +69,40 @@ public class CrudPersonasValidaciones {
 //metodo se ejecuta en la clase Menu, en el menu principal, verificar //
     
     public void registroInicial(Persona persona) {
-        boolean validacion = false;
-        persona.setNombre(JOptionPane.showInputDialog(null, "Digite el Nombre"));
+        boolean validacionBarbero = false;
+        boolean validacionCliente = false;
+        try {
+            
+           persona.setNombre(JOptionPane.showInputDialog(null, "Digite el Nombre"));
         persona.setApellido(JOptionPane.showInputDialog(null, "Digite el Apellido"));
         persona.setTelefono(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su Numero de Telefono")));
-        persona.setId(Integer.parseInt(JOptionPane.showInputDialog("ingrese su identificacion")));
+        persona.setId(Integer.parseInt(JOptionPane.showInputDialog("ingrese su identificacion"))); 
+        } catch (Exception e) {
+            registroInicial(persona);
+        }
+        
 
         this.guardar = new CrudArchivoRegistro();
-        validacion = validarPersona(persona.getId(), "listaBarberos.txt");
-        validacion = validarPersona(persona.getId(), "listaClientes.txt");
-        if (persona instanceof Barbero && validacion == false) {
+        
+       
+      
+        validacionBarbero = validarPersona(persona.getId(), "listaBarberos.txt");
+       
+        System.out.println("cliente" + validacionCliente);
+        validacionCliente = validarPersona(persona.getId(), "listaClientes.txt");
+        System.out.println("barbero" +validacionBarbero);
+        if (persona instanceof Barbero && validacionBarbero == false) {
             guardar.registroPersona(persona, "listaBarberos.txt");
             JOptionPane.showMessageDialog(null, "Registro exitoso");
-        } else if (persona instanceof Cliente && validacion == false) {
+            System.out.println("dentrando a barberos");
+        } else if (persona instanceof Cliente && validacionCliente == false ) {
             guardar.registroPersona(persona, "listaClientes.txt");
             JOptionPane.showMessageDialog(null, "Registro exitoso");
-        } else if (validacion == true) {
+            System.out.println("dentrando a clientes");
+        } else if (validacionBarbero == true  || validacionCliente == true) {
             JOptionPane.showMessageDialog(null, "numero de identificacion ya existe en nuestro sistema");
             menu.principalMenuValue();
+            System.out.println("dentrando en linea que ya esta ");
 
         }
 
