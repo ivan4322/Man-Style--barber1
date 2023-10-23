@@ -1,4 +1,4 @@
-
+//original
 package Login;
 
 import java.io.Serializable;
@@ -11,8 +11,8 @@ public class Barbero extends Persona implements Serializable{
     public Barbero() {
     }
 
-    public Barbero(String nombre, String apellido, String correo, long id, long telefono) {
-        super(nombre, apellido, correo, id, telefono);
+    public Barbero(String nombre, String apellido, String correo, int identificacion, long telefono) {
+        super(nombre, apellido, correo, identificacion, telefono);
     }
  
 }

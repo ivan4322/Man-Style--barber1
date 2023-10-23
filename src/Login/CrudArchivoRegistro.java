@@ -1,3 +1,5 @@
+//original
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -17,7 +19,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class CrudArchivoRegistro {
-    File archivoTexto;
+ File archivoTexto;
     
     //ESTA CLASE LO QUE HACE ES EL TRABAJO DE ARCHIVOS, ME RECIBE LA INFORMACION DE LA CLASE CRUDPERSONASVALIDACIONES//
    
@@ -73,36 +75,35 @@ public void leerPersona(Persona persona, String nombre){
         abrir.close();
         in.close();
         
-        
-     
         for(Persona guardador: listaPersonas){
              JOptionPane.showMessageDialog(null, "nombre " +guardador.getNombre()+ "\n apellido " + guardador.getApellido() 
-                     + "\n identificacion " +guardador.getId() + " \n telefono " +guardador.getTelefono());
+                     + "\n identificacion " +guardador.getIdentificacion()+ " \n telefono " +guardador.getTelefono());
       }
             }
             
        
         } catch (Exception e) {
+            
         }  
     }
    
-
-
-
 //METODO PARA ELIMINAR ARCHIVOS*/
-  public void eliminar (int id, String nombre){
+  public void eliminar (int ide, String nombre){
+     
    archivoTexto = new File (nombre);
       HashMap<Integer, Persona> personas = new HashMap<>();
   Persona persona = new Persona ();
-     
+   
       try {
       if(archivoTexto.exists()){
+         
+        
         FileInputStream filr = new FileInputStream(archivoTexto);  
          ObjectInputStream leyendo = new ObjectInputStream(filr);      
           while (true) {              
               try {
                persona = (Persona)leyendo.readObject();
-              personas.put(persona.getId2(), persona);
+              personas.put(persona.getIdentificacion(), persona);
              
               } catch (Exception e) {
                   break;
@@ -112,23 +113,28 @@ public void leerPersona(Persona persona, String nombre){
   filr.close();
   leyendo.close();
   //boolean validador;
-    if(personas.containsKey(id)){
-        personas.remove(id);
+    if(personas.containsKey(ide)){
+        personas.remove(ide);
+       JOptionPane.showMessageDialog(null, "eliminacion exitosa");
         actualizar(personas,nombre);
        
-     }
+     }else{
+      JOptionPane.showMessageDialog(null, "no existe la identificacion");      
+    }
    
       }
        
        } catch (Exception e) {
+       
        }
        
-        }  
+        }
+
+  
        
-  
-  
   //METODO ACTUALIZAR ARCHIVOS//
  public void actualizar(HashMap<Integer, Persona > Actual,  String nombre){
+     
  archivoTexto = new File (nombre);
      try {
        if(archivoTexto.exists()){
@@ -142,7 +148,7 @@ public void leerPersona(Persona persona, String nombre){
            }
          
      } catch (Exception e){
-         
+          
      }
  }
      
