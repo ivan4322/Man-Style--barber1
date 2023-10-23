@@ -1,3 +1,5 @@
+
+//original
 package Login;
 
 import java.io.File;
@@ -31,11 +33,11 @@ public class CrudPersonasValidaciones {
     
     //metodo para validar si la persona existe con el numero de identificacion, me devuelve un booleano
   //este metodo se ejecuta en la clase menu //
-    public boolean validarPersona(long id, String nombreLista) {
+    public boolean validarPersona(int id, String nombreLista) {
         boolean devolver = false;
         try {
             //Definiendo MAP
-            Map<Integer, Long> mapId = new HashMap<>();
+            Map<Integer, Integer> mapId = new HashMap<>();
             int i = 1;
             archivo = new File(nombreLista);
             Persona persona = new Persona();
@@ -46,9 +48,9 @@ public class CrudPersonasValidaciones {
 
                     try {
                         persona = (Persona) salidaArchivo.readObject();
-                        mapId.put(i, persona.getId());
+                        mapId.put(i, persona.getIdentificacion());
 
-                        System.out.println("" + persona.getId());
+                        System.out.println("" + persona.getIdentificacion());
                         i++;
                     } catch (Exception e) {
                         break;
@@ -76,33 +78,28 @@ public class CrudPersonasValidaciones {
            persona.setNombre(JOptionPane.showInputDialog(null, "Digite el Nombre"));
         persona.setApellido(JOptionPane.showInputDialog(null, "Digite el Apellido"));
         persona.setTelefono(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su Numero de Telefono")));
-        persona.setId(Integer.parseInt(JOptionPane.showInputDialog("ingrese su identificacion"))); 
+        persona.setIdentificacion(Integer.parseInt(JOptionPane.showInputDialog("ingrese su identificacion"))); 
         } catch (Exception e) {
             registroInicial(persona);
         }
         
-
         this.guardar = new CrudArchivoRegistro();
         
-       
+        validacionBarbero = validarPersona(persona.getIdentificacion(), "listaBarberos.txt");
+        validacionCliente = validarPersona(persona.getIdentificacion(), "listaClientes.txt");
       
-        validacionBarbero = validarPersona(persona.getId(), "listaBarberos.txt");
-       
-        System.out.println("cliente" + validacionCliente);
-        validacionCliente = validarPersona(persona.getId(), "listaClientes.txt");
-        System.out.println("barbero" +validacionBarbero);
         if (persona instanceof Barbero && validacionBarbero == false) {
             guardar.registroPersona(persona, "listaBarberos.txt");
             JOptionPane.showMessageDialog(null, "Registro exitoso");
-            System.out.println("dentrando a barberos");
+         
         } else if (persona instanceof Cliente && validacionCliente == false ) {
             guardar.registroPersona(persona, "listaClientes.txt");
             JOptionPane.showMessageDialog(null, "Registro exitoso");
-            System.out.println("dentrando a clientes");
+         
         } else if (validacionBarbero == true  || validacionCliente == true) {
             JOptionPane.showMessageDialog(null, "numero de identificacion ya existe en nuestro sistema");
             menu.principalMenuValue();
-            System.out.println("dentrando en linea que ya esta ");
+           
 
         }
 
@@ -117,6 +114,26 @@ public class CrudPersonasValidaciones {
    
      
      
-   }  
+   } 
+    
+    
+    
+    public void Eliminar(Persona persona,String nombre){
+        
+   int id =  Integer.parseInt(JOptionPane.showInputDialog(null, "digite el numero de documento a eliminar"));
+    
+   if(persona instanceof Barbero ){
+       guardar = new CrudArchivoRegistro();
+    guardar.eliminar(id, nombre);
+   }else if(persona instanceof Cliente){
+     guardar = new CrudArchivoRegistro();
+    guardar.eliminar(id, nombre);  
+   }
+        
+        
+        
+    }
+    
+    
 
 }

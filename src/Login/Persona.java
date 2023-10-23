@@ -1,4 +1,4 @@
-
+//original
 package Login;
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ public class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private String correo;
-    private long id;
+    private int identificacion;
     private long telefono;
     private int id2;
     public static int contPersonas;
@@ -21,11 +21,11 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String correo, long id, long telefono) {
+    public Persona(String nombre, String apellido, String correo, int identificacion, long telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.id = id;
+        this.identificacion = identificacion;
         this.telefono = telefono;
         this.id2=++Persona.contPersonas;
     }
@@ -62,12 +62,12 @@ public class Persona implements Serializable {
         this.correo = correo;
     }
 
-    public long getId() {
-        return id;
+    public int getIdentificacion() {
+        return identificacion;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdentificacion(int identificacion) {
+        this.identificacion  = identificacion;
     }
 
     public int getId2(){
