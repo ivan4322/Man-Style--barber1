@@ -3,6 +3,8 @@
 
 package Login;
 
+import CitasBarberia.Agenda;
+import CitasBarberia.GestionCitas;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -14,6 +16,8 @@ public class Menus {
     int id;
     CrudPersonasValidaciones valida;
     Barbero barbero;
+    GestionCitas cita;
+    Agenda agenda;
 
     //EN ESTA CLASE VAMOS A VISUALIZAR TODOS LOS MENUS, ESTA EL MENU PRINCIPAL
     //DEPENDIENDO DE LA NECESIDAD DEL USUARIO ESTE MENU PRINCIPAL ME DISTRIBUYE A OTROS MENUS
@@ -142,6 +146,10 @@ Icon icono = new ImageIcon (getClass().getResource("/Login/cabello+barba.jpg"));
         switch (id) {
             case 1:
                 System.out.println("agendar citas");
+                cita = new GestionCitas ();
+                agenda = new Agenda ();
+                cita.agendarCita(agenda, "ListaCitas.txt"); 
+                
                 break;
 
             case 2:

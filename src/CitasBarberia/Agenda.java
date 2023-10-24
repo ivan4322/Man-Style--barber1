@@ -11,12 +11,13 @@ import javax.swing.JOptionPane;
 
 
 public class Agenda {
-  private int tiket;
+ private int tiket;
  private Cliente cliente;
  private Barbero barbero;
  private boolean estadoCita;
+ LocalTime horaActual;
  
-// private Servicio servicio;
+  private Servicios servicio;
 //private MetodoPago pago;
 
   
