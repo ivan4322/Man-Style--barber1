@@ -16,8 +16,8 @@ public class Agenda {
  private Barbero barbero;
  private boolean estadoCita;
  
-// private Servicio servicio;
-//private MetodoPago pago;
+ private Servicio servicio;
+private MetodoPago pago;
 
   
   //LocalTime horaActual;  LocalTime.now();
